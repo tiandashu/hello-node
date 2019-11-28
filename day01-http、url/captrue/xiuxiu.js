@@ -8,7 +8,6 @@ const path = require('path')
 const cheerio = require("cheerio")
 const mimeTypes = require('../../assets/mime.json')
 
-
 // server
 let server = http.createServer(function(req, res){
   
@@ -39,7 +38,7 @@ let options = {
   path: '/a/5519.html',
   method: 'GET',
   headers: {
-    
+
   }
 }
 let client = http.request(options, function(res) {
