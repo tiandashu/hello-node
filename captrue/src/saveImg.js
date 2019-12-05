@@ -20,7 +20,7 @@ function saveImg(url, path, imgName) {
               return false
             }
             fs.writeFile(`${path}${imgName}`, imgData, 'binary', function (err) {
-              console.log('保存图片成功首次' + path + imgName)
+              // console.log('保存图片成功首次' + path + imgName)
             })
           })
           return false
@@ -28,7 +28,7 @@ function saveImg(url, path, imgName) {
         // 如果存在该目录直接写入图片
         if (stats.isDirectory()) {
           fs.writeFile(`${path}${imgName}`, imgData, 'binary', function (err) {
-            console.log('保存图片成功' + path + imgName)
+            // console.log('保存图片成功' + path + imgName)
           })
         }
 

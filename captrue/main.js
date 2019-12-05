@@ -34,7 +34,7 @@ let client = https.request(options, function (res) {
       console.log('清除日志成功')
     })
 
-
+    console.log(`---------页面共有图片${arr.length}张---------`)
     for (var i = 0; i < arr.length; i++) {
       let src = arr[i].match(srcReg);
       //获取图片地址
