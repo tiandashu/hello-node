@@ -1,54 +1,22 @@
-// 抓取思路：抓取网站图片
-// 1、发送请求 -》 获得页面 -》 解析页面 -》 下载内容 -》 存储内容
+var headers = {
+  'authority': 'www.meizitu.com',
+  'cache-control': 'max-age=0',
+  'upgrade-insecure-requests': '1',
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'sec-fetch-user': '?1',
+  'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'sec-fetch-site': 'cross-site',
+  'sec-fetch-mode': 'navigate',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie': '__cfduid=d28f39efa4a759e50a061c6704df4228a1575458096',
+  'if-modified-since': 'Wed, 15 May 2019 01:41:48 GMT'
+};
 
-const http = require('http')
-const fs = require('fs')
-const url = require('url')
-const path = require('path')
-const cheerio = require("cheerio")
-const mimeTypes = require('../../assets/mime.json')
+var options = {
+  url: 'https://www.meizitu.com/',
+  headers: headers
+};
 
-// server
-let server = http.createServer(function(req, res){
-  
-  let pathname = url.parse(req.url).pathname
-  if(pathname == '/') {
-    pathname = '/index.html'
-  }
-  let mimeType = mimeTypes[path.extname(pathname)]
 
-  if(pathname !== './favicon.ico') {
-    res.writeHead(200, {
-      "Content-Type": `${mimeType};charset='utf-8'`
-    })
-    
-    res.write('index page')
-    res.end()
-  }
-
-})
-server.listen(4000)
-console.log('http://localhost:4000')
-
-// client
-let htmlData = ''
-let options = {
-  host: 'www.meizitu.com',
-  port: 80,
-  path: '/a/5519.html',
-  method: 'GET',
-  headers: {
-
-  }
-}
-let client = http.request(options, function(res) {
-  res.on('data',function(chunk){
-    htmlData += chunk
-  })
-  res.on('end',function() {
-    console.log('end')
-  })
-  
-})
-
-client.end()
+module.exports = options

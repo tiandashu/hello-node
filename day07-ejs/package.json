@@ -1,0 +1,15 @@
+{
+  "name": "day07-ejs",
+  "version": "1.0.0",
+  "description": "- ejs处理模板 - get、post - 实现路由",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.1"
+  }
+}

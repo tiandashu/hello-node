@@ -7,10 +7,11 @@ const cheerio = require("cheerio")
 
 // options
 const douban = require('./options/douban')
+const keke = require('./options/keke')
+const meizitu = require('./options/meizitu')
+const baidu = require('./options/baidu')
 
-
-
-let options = douban
+let options = keke
 let htmlData = ''
 let client = http.request(options, function (res) {
   res.setEncoding("utf-8");
@@ -58,6 +59,6 @@ let client = http.request(options, function (res) {
 })
 
 client.on("error", function (err) {
-  console.log(err.message);
+  console.log('error', err.message);
 });
 client.end()

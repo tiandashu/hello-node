@@ -1,6 +1,4 @@
 let options = {
-  // hostname: 'www.meizitu.com',
-  // path: '/a/5519.html',
   hostname: 'www.douban.com',
   path: '/doulist/108579955/',
   port: 80,
