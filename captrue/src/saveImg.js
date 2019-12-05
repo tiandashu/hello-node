@@ -7,7 +7,7 @@ function saveImg(url, path, imgName) {
   https.get(url, function (res) {
 
     var imgData = '';
-
+    res.setEncoding('binary');
     res.on('data', function (chunk) {
       imgData += chunk;
     })
