@@ -28,7 +28,7 @@ let client = http.request(options, function (res) {
         console.log(err)
         return false
       }
-      if (stats.isDirectory) {
+      if ( stats.isDirectory() ) {
         fs.writeFile("./down/baidu.txt", text, "utf-8", function (err) {
           if (err) {
             return false
