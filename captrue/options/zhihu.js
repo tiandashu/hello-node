@@ -4,14 +4,15 @@ var paths = [
   ["大长腿", "/question/285321190/answer/657375937"],
   
 ]
-console.log(paths[1])
+let index = 0
+
 var options = {
   hostname: 'www.zhihu.com',
   port: 443,
-  path: paths[1][1],
+  path: paths[index][1],
 }
 
 module.exports = {
   options,
-  staticPath: paths[1][0]
+  staticPath: paths[index][0]
 }
