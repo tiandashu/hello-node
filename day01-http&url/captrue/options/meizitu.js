@@ -9,12 +9,11 @@ var headers = {
   'sec-fetch-mode': 'navigate',
   'accept-encoding': 'gzip, deflate, br',
   'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie': '__cfduid=d28f39efa4a759e50a061c6704df4228a1575458096',
-  'if-modified-since': 'Wed, 15 May 2019 01:41:48 GMT'
+  'cookie': '__cfduid=d3a6ad12d56b605a2874c0f44654b02371575511428; UM_distinctid=16ed3ccd1c93ad-09f9f430e29b6c-3960720f-13c680-16ed3ccd1ca765; CNZZDATA30056528=cnzz_eid%3D124613212-1575510792-https%253A%252F%252Fwww.meizitu.com%252F%26ntime%3D1575510792'
 };
 
 var options = {
-  url: 'https://www.meizitu.com/',
+  hostname: 'www.meizitu.com',
   headers: headers
 };
 

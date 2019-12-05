@@ -11,7 +11,7 @@ const keke = require('./options/keke')
 const meizitu = require('./options/meizitu')
 const baidu = require('./options/baidu')
 
-let options = keke
+let options = meizitu
 let htmlData = ''
 let client = http.request(options, function (res) {
   res.setEncoding("utf-8");
