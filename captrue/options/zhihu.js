@@ -5,5 +5,7 @@ var options = {
   path: '/question/297715922/answer/520615441',
 }
 
-
-module.exports = options
+module.exports = {
+  options,
+  staticPath: '好身材'
+}

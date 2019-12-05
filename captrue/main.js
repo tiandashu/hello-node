@@ -4,6 +4,7 @@
 const http = require('http')
 const https = require('https')
 const fs = require('fs')
+const saveImg = require('./src/saveImg')
 
 // options
 const douban = require('./options/douban')
@@ -12,11 +13,10 @@ const meizitu = require('./options/meizitu')
 const baidu = require('./options/baidu')
 const zhihu = require('./options/zhihu')
 
-let options = zhihu
+let {options, staticPath} = zhihu
 let htmlData = ''
 let client = https.request(options, function (res) {
   // res.setEncoding("utf-8");
-
   res.on('data', function (chunk) {
     htmlData += chunk
   })
@@ -25,72 +25,40 @@ let client = https.request(options, function (res) {
     var imgReg = /<img.*?(?:>|\/>)/gi;
     var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
     var arr = htmlData.match(imgReg);
-    // let base64 = item.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
-    //         let dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
+
+    fs.unlink('./logs/log.text', function(err){
+      if(err) {
+        console.log('清除日志失败')
+        return false
+      }
+      console.log('清除日志成功')
+    })
+
 
     for (var i = 0; i < arr.length; i++) {
-      var src = arr[i].match(srcReg);
+      let src = arr[i].match(srcReg);
       //获取图片地址
       // console.log('图片地址' + (i + 1) + '：' + src[1]);
-      if(src[1].indexOf('http')>-1){
-        saveImg(src[1], `./download/${i}.png`)
-      }
-      
+      fs.appendFile('./logs/log.text', src[1] + '\n', function (err) {
+        if (err) {
+          console.log('日志错误', err)
+          return false;
+        }
+        // console.log('日志打印成功')
+      })
+
+      if (src[1].indexOf('data:') ==  -1) {
+        saveImg(src[1], `./download/${staticPath}/`, `${i}.png`)
+      } 
     }
-
-    // fs.stat('./download', function (err, stats) {
-    //   // 如果没有该文件就创建
-    //   if (err) {
-    //     fs.mkdir('./download', function (err) {
-    //       if (err) {
-    //         return false
-    //       }
-    //       fs.writeFile("./download/baidu.txt", arr, "utf-8", function (err) {
-    //         if (err) {
-    //           return false
-    //         }
-    //       })
-    //     })
-    //     return false
-    //   }
-    //   // 如果有download文件夹就直接写入
-    //   if (stats.isDirectory()) {
-    //     fs.writeFile("./download/baidu.txt", arr, "utf-8", function (err) {
-    //       if (err) {
-    //         return false
-    //       }
-    //     })
-    //   }
-
-    // })
-
   })
 
 })
-//保存图片到本地
-function saveImg(url, path) {
-  console.log(url, path)
-  try {
-    https.get(url, function (req, res) {
-      var imgData = '';
-      req.setEncoding('binary');
-      req.on('data', function (chunk) {
-        imgData += chunk;
-      })
-      req.on('end', function () {
-        fs.writeFile(path, imgData, 'binary', function (err) {
-          console.log('保存图片成功' + path)
-        })
-      })
-    })
-  }
-  catch (err) {
-
-  }
-
-}
 
 client.on("error", function (err) {
   console.log('clienterror:', err.message);
 });
-client.end()
+
+client.end(function(){
+  console.warn('页面抓取完成了')
+})
