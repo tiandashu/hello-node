@@ -4,9 +4,8 @@ var paths = [
   ["好身材3", "/question/297715922/answer/710626693"],
   ["大长腿", "/question/285321190/answer/657375937"],
   ["女朋友", "/question/313825759"],
-  
 ]
-let index = 4
+let index = 2
 
 var options = {
   hostname: 'www.zhihu.com',

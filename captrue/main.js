@@ -24,7 +24,16 @@ let client = https.request(options, function (res) {
   res.on('end', function () {
     var imgReg = /<img.*?(?:>|\/>)/gi;
     var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+    
     var arr = htmlData.match(imgReg);
+    console.log(htmlData)
+    fs.writeFile('./logs/html.text', htmlData, function(err){
+      if(err) {
+        console.log(err)
+        return false
+      }
+      console.log('html写入成功了')
+    })
 
     fs.unlink('./logs/log.text', function(err){
       if(err) {

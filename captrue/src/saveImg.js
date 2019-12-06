@@ -1,7 +1,6 @@
 const https = require('https')
 const fs = require('fs')
 
-
 //保存图片到本地
 function saveImg(url, path, imgName) {
   https.get(url, function (res) {
@@ -25,6 +24,7 @@ function saveImg(url, path, imgName) {
           })
           return false
         }
+        
         // 如果存在该目录直接写入图片
         if (stats.isDirectory()) {
           fs.writeFile(`${path}${imgName}`, imgData, 'binary', function (err) {
