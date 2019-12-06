@@ -6,6 +6,8 @@ const https = require('https')
 const fs = require('fs')
 const saveImg = require('./src/saveImg')
 
+var iconv = require('iconv-lite');
+
 // options
 const douban = require('./options/douban')
 const keke = require('./options/keke')
@@ -22,18 +24,18 @@ let client = https.request(options, function (res) {
   })
 
   res.on('end', function () {
-    var imgReg = /<img.*?(?:>|\/>)/gi;
-    var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-    
-    var arr = htmlData.match(imgReg);
-    console.log(htmlData)
-    fs.writeFile('./logs/html.text', htmlData, function(err){
+    // 查看初始内容
+    fs.writeFile('./logs/htmlData.html', htmlData, function(err){
       if(err) {
         console.log(err)
         return false
       }
       console.log('html写入成功了')
     })
+
+    var imgReg = /<img.*?(?:>|\/>)/gi;
+    var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+    var arr = htmlData.match(imgReg);
 
     fs.unlink('./logs/log.text', function(err){
       if(err) {
@@ -43,7 +45,7 @@ let client = https.request(options, function (res) {
       console.log('清除日志成功')
     })
 
-    console.log(`---------页面共有图片${arr.length}张---------`)
+    console.log(`---------页面共有图片${arr.length}张----------`)
     for (var i = 0; i < arr.length; i++) {
       let src = arr[i].match(srcReg);
       //获取图片地址
@@ -60,6 +62,7 @@ let client = https.request(options, function (res) {
         saveImg(src[1], `./download/${staticPath}/`, `${i}.png`)
       } 
     }
+
   })
 
 })

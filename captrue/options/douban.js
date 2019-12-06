@@ -1,8 +1,6 @@
 let options = {
   hostname: 'www.douban.com',
   path: '/doulist/108579955/',
-  port: 80,
-  method: 'GET',
   headers: {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
     "Accept-Encoding": "gzip, deflate, br",
@@ -19,4 +17,7 @@ let options = {
   }
 }
 
-module.exports = options
+module.exports = {
+  staticPath: '豆瓣',
+  options
+}
