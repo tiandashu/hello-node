@@ -18,7 +18,7 @@ const zhihu = require('./options/zhihu')
 let {options, staticPath} = zhihu
 let htmlData = ''
 let client = https.request(options, function (res) {
-  // res.setEncoding("utf-8");
+  res.setEncoding("utf-8");
   res.on('data', function (chunk) {
     htmlData += chunk
   })
@@ -42,7 +42,7 @@ let client = https.request(options, function (res) {
         console.log('清除日志失败')
         return false
       }
-      console.log('清除日志成功')
+      console.log('日志先清除再写入')
     })
 
     console.log(`---------页面共有图片${arr.length}张----------`)
