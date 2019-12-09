@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>zhihu</title>
+  <title><%= title %></title>
   <style>
-    *{
+    * {
       padding: 0;
       margin: 0;
     }
-    html,body{
-      background: #888;
+
+    html,
+    body {
+      background: #dedede;
     }
-    .page{
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    /* page css */
+    .page {
       width: 1280px;
       background: #fff;
       margin: 0 auto;
-      
+    }
+
+    h3 {
+      text-align: center;
+    }
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    img{
+      width: 100%;
     }
   </style>
 </head>
+
 <body>
   <div class="page">
-    <h3>知乎</h3>
+    <h3>知乎 <%= title %> </h3>
     <ul>
-      <li>
-        <img src="" alt="">
-      </li>
+      <% for(var i in imgList){ %>
+      <li><img src="<%= imgList[i] %>"></li>
+      <% } %>
     </ul>
   </div>
 </body>
+
 </html>
