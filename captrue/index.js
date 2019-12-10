@@ -9,7 +9,6 @@ http.createServer(function(req, res) {
   res.writeHead(200, {
     "Content-Type": "text/html;charset='utf-8"
   })
-  // console.log(client())
   client(function(data){
     ejs.renderFile('./views/zhihu.ejs', {
       title: 'zhihu',
