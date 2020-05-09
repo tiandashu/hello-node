@@ -23,10 +23,10 @@ http.createServer(function(req, res) {
     })
   })
 
-}).listen(3000, function(err){
+}).listen(3001, function(err){
   if(err){
     console.log(err)
     return false
   }
-  console.log('http://localhost:3000')
+  console.log('http://localhost:3001')
 })
